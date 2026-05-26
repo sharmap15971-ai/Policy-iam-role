@@ -3,7 +3,7 @@ Resources:
   CloudWatchIAMRole:
     Type: 'AWS::IAM::Role'
     Properties:
-      RoleName: "CloudWatchLoggingRole"
+      RoleName: "Cachajikipolicy"
       # Trust Policy: Allows EC2 instances to assume this role
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
@@ -16,7 +16,7 @@ Resources:
               - 'sts:AssumeRole'
       # Permissions Policy: Grants access to CloudWatch Logs and Metrics
       Policies:
-        - PolicyName: "CloudWatchAccessPolicy"
+        - PolicyName: "Cachajikipolicy"
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
@@ -28,3 +28,22 @@ Resources:
                   - 'logs:DescribeLogStreams'
                   - 'cloudwatch:PutMetricData'
                 Resource: '*'
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "evidently:GetExperiment",
+                "evidently:GetFeature",
+                "evidently:GetLaunch",
+                "evidently:GetProject",
+                "evidently:ListExperiments",
+                "evidently:ListFeatures",
+                "evidently:ListLaunches",
+                "evidently:ListProjects"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
